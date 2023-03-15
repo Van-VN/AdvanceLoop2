@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            line-height: 0;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Bài 1: In dãy Fibonaci</h2>
+<button onclick="fiboPrint()">Bấm để bắt đầu bài 1</button>
+
+<h2>Bài 2: Tính giai thừa của một số nguyên dương</h2>
+<button onclick="factorial()">Bấm để bắt đầu bài 2</button>
+
+<h2>Bài 3: In tam giác vuông. Các góc vuông nằm ở các vị trí khác nhau</h2>
+<button onclick="drawTriangle()">Bấm để bắt đầu bài 3</button>
+
+<h2>Bài 4: In hình chữ nhật</h2>
+<button onclick="drawRect()">Bấm để bắt đầu bài 4</button>
+
+<h2>Bài 5: Viết chương trình tính lãi ngân hàng (lãi mẹ đẻ lại con)
+    khi biết số tiền ban đầu, số tháng cho vay và lãi xuất hàng tháng.</h2>
+<button onclick="compoundInterest()">Bấm để bắt đầu bài 5</button>
+
+<h2>Bài 6: In hình trái tim</h2>
+<button onclick="drawHeart()">Bấm để bắt đầu bài 6</button>
+
+</body>
+</html>
+
+<script>
+
+    // Bài 1
+    function fiboPrint() {
+        let numCounter = +prompt("Nhập số lượng số Fibonacci muốn in ra: ")
+        let a = 0;
+        let b = 1;
+        document.write(a + '<br>' + b + '<br>');
+        for (let i = 0; i < numCounter - 2; i++) {
+            let c = a + b;
+            a = b;
+            b = c;
+            document.write(c + "<br>");
+        }
+    }
+
+    // Bài 2
+    function factorial() {
+        let result = 1;
+        let num = +prompt("Nhập số muốn tính giai thừa");
+        for (let i = 1; i <= num; i++) {
+            result *= i;
+        }
+        document.write(result);
+    }
+
+    // Bài 3
+    function drawTriangle() {
+        for (let i = 1; i <= 5; i++) {
+            for (let j = 0; j < i; j++) {
+                document.write('*');
+            }
+            document.write('<br>')
+        }
+        document.write('<br>')
+        for (let i = 5; i >= 1; i--) {
+            for (let j = 0; j < i; j++) {
+                document.write('*')
+            }
+            document.write('<br>');
+        }
+        document.write('<br>')
+        for (let i = 1; i <= 5; i++) {
+            document.write('&nbsp;&nbsp;'.repeat(5 - i) + '*'.repeat(i));
+            document.write('<br>')
+        }
+        document.write('<br>')
+        for (let i = 5; i >= 1; i--) {
+            document.write('&nbsp;&nbsp;'.repeat(5 - i) + '*'.repeat(i));
+            document.write('<br>')
+        }
+    }
+
+    // Bài 4
+    function drawRect() {
+        let width = +prompt("Nhập chiều dài hình chữ nhật: ")
+        let height = +prompt("Nhập chiều rộng hình chữ nhật: ")
+        for (let i = 1; i <= height; i++) {
+            for (let j = 1; j <= width; j++) {
+                if (i === 1 || i === height) {
+                    document.write('*');
+                } else if (j > 1 && j < width) {
+                    document.write("&nbsp;&nbsp;");
+                } else {
+                    document.write('*')
+                }
+            }
+            document.write('<br>');
+        }
+    }
+
+    // Bài 5
+    function compoundInterest() {
+        let lend = +prompt("Nhập số tiền muốn vay: ").toLocaleString();
+        let month = +prompt("Nhập số tháng vay: ");
+        let interestRate = +prompt("Nhập lãi suất tổng khoảng thời gian vay theo %:")
+        let avgInterest = interestRate / month / 100;
+        let total = lend;
+        for (let i = 0; i < month; i++) {
+            total *= (1 + avgInterest);
+        }
+        document.write(`Tổng số tiền cần phải tra sau khi vay ` + lend.toLocaleString() + ` ; thời hạn ${month} tháng với lãi suất ${interestRate} là: ` + total.toLocaleString());
+    }
+
+    // Bài 6
+    function drawHeart() {
+        for (let i = 1; i <= 8; i++) {
+            for (let j = 1; j <= 7; j++) {
+                if (i === 1) {
+                    if (j === 1 || j === 4 || j === 7) {
+                        document.write("&nbsp;&nbsp;");
+                    } else {
+                        document.write('*');
+                    }
+                } else if (i === 6 && j === 1 ||
+                    i === 6 && j === 7) {
+                    document.write("&nbsp;&nbsp;");
+                } else if (i === 7 && j === 1 ||
+                    i === 7 && j === 2 ||
+                    i === 7 && j === 6 ||
+                    i === 7 && j === 7) {
+                    document.write("&nbsp;&nbsp;");
+                } else if (i === 8 && j === 1 ||
+                    i === 8 && j === 2 ||
+                    i === 8 && j === 3 ||
+                    i === 8 && j === 5 ||
+                    i === 8 && j === 6 ||
+                    i === 8 && j === 7) {
+                    document.write("&nbsp;&nbsp;");
+                } else {
+                    document.write("*");
+                }
+            }
+            document.write('<br>')
+        }
+    }
+</script>
